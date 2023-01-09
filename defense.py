@@ -79,6 +79,8 @@ def CLP(net, u):
     net.load_state_dict(params)
 
 
+# This version of EP uses only uses args.batch-size samples in training dataset for pruning.
+# If you want to use the full training dataset for better performance, please comment the break in line 100.
 def EP(sd_ori, k, mixed_loader, args, num_classes):
     net = get_model(args.model, num_classes, BatchNorm2d_ent).to(args.device)
     net.load_state_dict(sd_ori)
@@ -96,6 +98,7 @@ def EP(sd_ori, k, mixed_loader, args, num_classes):
             for name, m in net.named_modules():
                 if isinstance(m, nn.BatchNorm2d):
                     batch_feats_total[name] = torch.cat([batch_feats_total[name], m.batch_feats], 1)
+            break
     for name, m in net.named_modules():
         if isinstance(m, nn.BatchNorm2d):
             feats = batch_feats_total[name]
