@@ -80,7 +80,7 @@ def CLP(net, u):
 
 
 # This version of EP uses only uses args.batch-size samples in training dataset for pruning.
-# If you want to use the full training dataset for better performance, please comment the break in line 100.
+# If you want to use the full training dataset for better performance, please comment the break in line 101.
 def EP(sd_ori, k, mixed_loader, args, num_classes):
     net = get_model(args.model, num_classes, BatchNorm2d_ent).to(args.device)
     net.load_state_dict(sd_ori)
