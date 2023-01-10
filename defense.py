@@ -3,6 +3,15 @@ import torch.nn as nn
 import models
 from models import get_model
 """
+EP/BNP
+    Input:
+        - sd_ori: original network state dict 
+        - k: coefficient that determines the pruning threshold
+        - mixed_loader/val_loader: dataset loader for EP/BNP pruning
+        - args
+        - num_classes: number of classes, used for defining network structure
+    Output:
+CLP
     Input:
         - net: model to be pruned
         - u: coefficient that determines the pruning threshold
